@@ -1,15 +1,5 @@
 let component = ReasonReact.statelessComponent("Button");
 
-let str = float => {
-  let string = string_of_float(float);
-  let lastChar = string.[String.length(string) - 1];
-  if (lastChar == '.') {
-    string ++ "0";
-  } else {
-    string;
-  };
-};
-
 let shrinkage = 0.85;
 
 let make =
@@ -30,10 +20,10 @@ let make =
   render: _self => {
     let fill =
       switch (on, indicated) {
-      | (false, false) => "#00f"
-      | (false, true) => "#44f"
-      | (true, false) => "#f00"
-      | (true, true) => "#f44"
+      | (false, false) => "#359f7d"
+      | (false, true) => "#86d1b9"
+      | (true, false) => "#9f3535"
+      | (true, true) => "#de8888"
       };
     let (actual_width, actual_height) =
       if (indicated) {
@@ -47,21 +37,21 @@ let make =
     );
     let (stroke, strokeWidth) =
       if (indicated) {
-        ("black", 5.);
+        ("#aaaaaa", 5.);
       } else {
-        ("black", 0.);
+        ("#aaaaaa", 0.);
       };
     <rect
-      x=(str(actual_x))
-      y=(str(actual_y))
-      width=(str(actual_width))
-      height=(str(actual_height))
+      x=(Utils.str(actual_x))
+      y=(Utils.str(actual_y))
+      width=(Utils.str(actual_width))
+      height=(Utils.str(actual_height))
       onClick
       onMouseOver
       onMouseOut
       fill
       stroke
-      strokeWidth=(str(strokeWidth))
+      strokeWidth=(Utils.str(strokeWidth))
     />;
   },
 };
